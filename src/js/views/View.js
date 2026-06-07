@@ -9,7 +9,7 @@ export default class View {
    * @param {boolean} [render=true] If false, create markup string instead of rendering to the DOM
    * @returns {undefined | string} A markup string is returned if render=false
    * @this {Object} View instance
-   * @author Jonas Schmedtmann
+   * @author Seth Milchick
    * @todo Finish implementation
    */
   render(data, render = true) {
@@ -42,14 +42,11 @@ export default class View {
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
       ) {
-        // console.log('💥', newEl.firstChild.nodeValue.trim());
         curEl.textContent = newEl.textContent;
       }
-
-      // Updates changed ATTRIBUES
       if (!newEl.isEqualNode(curEl))
         Array.from(newEl.attributes).forEach(attr =>
-          curEl.setAttribute(attr.name, attr.value)
+          curEl.setAttribute(attr.name, attr.value),
         );
     });
   }
